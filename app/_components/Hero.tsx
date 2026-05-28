@@ -50,7 +50,7 @@ export function Hero() {
       <div className="relative z-10 flex h-screen w-full items-center justify-center flex-col">
         <div className="flex flex-col items-center px-4">
           <motion.p
-            className="font-pixel text-[#ff8c37] text-[4rem] sm:text-[7rem] md:text-[10rem] lg:text-[12rem] select-none leading-none"
+            className="font-pixel text-[#1F3A2E] text-[4rem] sm:text-[7rem] md:text-[10rem] lg:text-[12rem] select-none leading-none"
             initial={{ opacity: 0, y: -80, scale: 0.85 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
