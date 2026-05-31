@@ -10,7 +10,7 @@ export function Menu() {
         rel="noopener noreferrer"
         className="px-6 py-2 bg-[#ec3750] text-white rounded-lg font-pixel hover:shadow-lg hover:-translate-y-1 transition-all"
       >
-        test the game
+        Test the game
       </a>
     </div>
   );
