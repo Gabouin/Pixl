@@ -35,12 +35,17 @@ export function Hero() {
   }
 
   return (
-    <div className="relative">
-      <img
-        src="/hero-bg.png"
-        alt="hero"
-        className="w-full h-screen absolute object-cover"
-      />
+    <div className="relative h-screen">
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/hero-bg1.png"
+      >
+        <source src="/hero-bg.mp4" type="video/mp4" />
+      </video>
       <motion.div
         className="absolute inset-0 bg-black"
         initial={{ opacity: 0.6 }}
@@ -50,7 +55,7 @@ export function Hero() {
       <div className="relative z-10 flex h-screen w-full items-center justify-center flex-col">
         <div className="flex flex-col items-center px-4">
           <motion.p
-            className="font-pixel text-[#1F3A2E] text-[4rem] sm:text-[7rem] md:text-[10rem] lg:text-[12rem] select-none leading-none"
+            className="font-pixel text-black text-[4rem] sm:text-[7rem] md:text-[10rem] lg:text-[12rem] select-none leading-none"
             initial={{ opacity: 0, y: -80, scale: 0.85 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
