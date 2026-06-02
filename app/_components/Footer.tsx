@@ -158,15 +158,29 @@ export function Footer() {
         </div>
       </motion.div>
 
-      <motion.p
-        className="mt-12 text-black/40 text-sm border-t-2 border-black/10 pt-8"
+      <motion.div
+        className="mt-12 flex items-center justify-between gap-4 text-black/40 text-sm border-t-2 border-black/10 pt-8"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        Pixl is made with ♥ by teenagers, for teenagers.
-      </motion.p>
+        <p className="min-w-0">
+          Pixl is made with ♥ by teenagers for teenagers
+        </p>
+        <p className="min-w-0 text-right">
+          want to add something ? Make a PR on{' '}
+          <a
+            href="https://github.com/Pixl-YSWS/pixl"
+            target="_blank"
+            rel="noreferrer"
+            className="underline underline-offset-2 hover:text-[#ec3750] transition-colors"
+          >
+            GitHub
+          </a>
+          .
+        </p>
+      </motion.div>
     </footer>
   );
 }
