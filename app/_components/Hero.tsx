@@ -36,11 +36,16 @@ export function Hero() {
 
   return (
     <div className="relative h-screen">
-      <img
-        src="/hero-bg2.png"
-        alt="hero"
+      <video
         className="absolute inset-0 w-full h-full object-cover"
-      />
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/hero-bg1.png"
+      >
+        <source src="/hero-bg.mp4" type="video/mp4" />
+      </video>
       <motion.div
         className="absolute inset-0 bg-black"
         initial={{ opacity: 0.6 }}
