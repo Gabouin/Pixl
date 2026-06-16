@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const steps = [
   {
@@ -62,20 +62,17 @@ function VideoCard({ s }: { s: typeof steps[number] }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const comingSoon = s.step >= 3;
 
-  const play = () => { if (!comingSoon) videoRef.current?.play(); };
-  const pause = () => { if (!comingSoon) videoRef.current?.pause(); };
-  const toggle = () => {
-    if (comingSoon || !videoRef.current) return;
-    videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause();
-  };
+  useEffect(() => {
+    const isTouch = window.matchMedia("(hover: none)").matches;
+    if (isTouch && !comingSoon) videoRef.current?.play();
+  }, [comingSoon]);
 
   return (
     <motion.div
       variants={cardVariants}
       className="flex flex-col gap-2 text-left"
-      onPointerEnter={(e) => e.pointerType === "mouse" && play()}
-      onPointerLeave={(e) => e.pointerType === "mouse" && pause()}
-      onPointerUp={(e) => e.pointerType === "touch" && toggle()}
+      onPointerEnter={(e) => { if (!comingSoon && e.pointerType === "mouse") videoRef.current?.play(); }}
+      onPointerLeave={(e) => { if (!comingSoon && e.pointerType === "mouse") videoRef.current?.pause(); }}
     >
       <div className="relative border-2 border-black aspect-square overflow-hidden bg-black shadow-[4px_4px_0px_#000] hover:shadow-[8px_8px_0px_#000] hover:-translate-y-2 hover:-translate-x-2 transition-all">
         <span
