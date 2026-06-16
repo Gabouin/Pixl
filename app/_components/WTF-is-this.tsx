@@ -68,6 +68,8 @@ function VideoCard({ s }: { s: typeof steps[number] }) {
       className="flex flex-col gap-2 text-left"
       onMouseEnter={() => !comingSoon && videoRef.current?.play()}
       onMouseLeave={() => !comingSoon && videoRef.current?.pause()}
+      onTouchStart={() => !comingSoon && videoRef.current?.play()}
+      onTouchEnd={() => !comingSoon && videoRef.current?.pause()}
     >
       <div className="relative border-2 border-black aspect-square overflow-hidden bg-black shadow-[4px_4px_0px_#000] hover:shadow-[8px_8px_0px_#000] hover:-translate-y-2 hover:-translate-x-2 transition-all">
         <span
@@ -126,7 +128,7 @@ export function WTFISTHIS() {
       </motion.p>
 
       <motion.div
-        className="grid grid-cols-2 md:grid-cols-3 gap-15 w-full max-w-7xl"
+        className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-15 w-full max-w-7xl"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -139,3 +141,4 @@ export function WTFISTHIS() {
     </section>
   );
 }
+

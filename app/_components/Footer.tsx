@@ -21,7 +21,7 @@ const item = {
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t-4 border-black px-20 py-16 mt-30">
+    <footer className="bg-white border-t-4 border-black px-4 md:px-20 py-8 md:py-16 mt-10 md:mt-30">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export function Footer() {
       </motion.div>
 
       <motion.div
-        className="grid grid-cols-3 gap-10 mt-12 border-t-2 border-black pt-10"
+        className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-8 border-t-2 border-black pt-8"
         variants={container}
         initial="hidden"
         whileInView="show"
@@ -159,7 +159,7 @@ export function Footer() {
       </motion.div>
 
       <motion.div
-        className="mt-12 flex items-center justify-between gap-4 text-black/40 text-sm border-t-2 border-black/10 pt-8"
+        className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-black/40 text-sm border-t-2 border-black/10 pt-6"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
