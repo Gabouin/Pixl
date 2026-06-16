@@ -102,7 +102,7 @@ function FAQItem({
 export function FAQ() {
   return (
     <section
-      className="my-30 px-20 text-center flex flex-col items-center w-full"
+      className="my-10 md:my-30 px-4 md:px-20 text-center flex flex-col items-center w-full"
       id="faq"
     >
       <motion.p
