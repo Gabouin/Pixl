@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const levels = [
   {
@@ -116,6 +116,48 @@ const cardVariants = {
   },
 };
 
+function SidequestCard({ l }: { l: (typeof levels)[number] }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      className="flex flex-col border-2 border-black bg-[#fffaf7] w-80 shrink-0 group relative overflow-hidden cursor-pointer"
+      style={{ boxShadow: `6px 6px 0px ${l.color}` }}
+      onClick={() => setOpen((o) => !o)}
+    >
+      <div className="flex items-center justify-between px-5 py-4 border-b-2 border-black">
+        <span
+          className="font-pixel text-sm px-3 py-1 border-2 border-black"
+          style={{ background: l.color, color: "#fff" }}
+        >
+          {l.level}
+        </span>
+        <p className="text-black/40 text-xs font-sans">{l.hours}</p>
+      </div>
+
+      <div className="px-5 py-5 flex flex-col gap-2 flex-1">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-black/40 font-sans">Sidequest</p>
+        <p className="font-pixel text-lg leading-snug">{l.quest.title}</p>
+        <p className="text-black/60 text-sm leading-relaxed font-sans">{l.quest.description}</p>
+        <div className="flex gap-2 flex-wrap mt-1">
+          {l.quest.tags.map((tag) => (
+            <span key={tag} className="text-[10px] border border-black/30 px-2 py-0.5 text-black/50 font-sans">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div
+        className={`absolute inset-0 bg-[#fffaf7] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col justify-center px-5 py-5 gap-3 group-hover:translate-y-0 ${open ? "translate-y-0" : "translate-y-full"}`}
+      >
+        <p className="text-[10px] font-bold uppercase tracking-widest text-black/40 font-sans">Prize</p>
+        <p className="font-pixel text-2xl leading-snug">{l.prize.title}</p>
+        <p className="text-black/60 text-sm leading-relaxed font-sans">{l.prize.description}</p>
+      </div>
+    </div>
+  );
+}
+
 function Marquee({ children }: { children: React.ReactNode }) {
   const x = useMotionValue(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -188,42 +230,9 @@ export function Sidequests() {
       </div>
 
       <Marquee>
-          {[...levels, ...levels].map((l, i) => (
-            <div
-              key={i}
-              className="flex flex-col border-2 border-black bg-[#fffaf7] w-80 shrink-0 group relative overflow-hidden"
-              style={{ boxShadow: `6px 6px 0px ${l.color}` }}
-            >
-              <div className="flex items-center justify-between px-5 py-4 border-b-2 border-black">
-                <span
-                  className="font-pixel text-sm px-3 py-1 border-2 border-black"
-                  style={{ background: l.color, color: "#fff" }}
-                >
-                  {l.level}
-                </span>
-                <p className="text-black/40 text-xs font-sans">{l.hours}</p>
-              </div>
-
-              <div className="px-5 py-5 flex flex-col gap-2 flex-1">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-black/40 font-sans">Sidequest</p>
-                <p className="font-pixel text-lg leading-snug">{l.quest.title}</p>
-                <p className="text-black/60 text-sm leading-relaxed font-sans">{l.quest.description}</p>
-                <div className="flex gap-2 flex-wrap mt-1">
-                  {l.quest.tags.map((tag) => (
-                    <span key={tag} className="text-[10px] border border-black/30 px-2 py-0.5 text-black/50 font-sans">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="absolute inset-0 bg-[#fffaf7] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col justify-center px-5 py-5 gap-3">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-black/40 font-sans">Prize</p>
-                <p className="font-pixel text-2xl leading-snug">{l.prize.title}</p>
-                <p className="text-black/60 text-sm leading-relaxed font-sans">{l.prize.description}</p>
-              </div>
-            </div>
-          ))}
+        {[...levels, ...levels].map((l, i) => (
+          <SidequestCard key={i} l={l} />
+        ))}
       </Marquee>
 
       <motion.div
