@@ -21,11 +21,11 @@ const item = {
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t-4 border-black px-4 md:px-20 py-8 md:py-16 mt-10 md:mt-30">
+    <footer className="bg-white border-t-4 border-black px-4 md:px-20 py-6 md:py-10 mt-10 md:mt-30">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="mb-8"
       >
@@ -79,7 +79,7 @@ export function Footer() {
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true }}
       >
         <div>
           <motion.p

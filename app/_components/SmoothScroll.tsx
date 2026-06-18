@@ -11,7 +11,14 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-    return () => lenis.destroy();
+
+    const ro = new ResizeObserver(() => lenis.resize());
+    ro.observe(document.body);
+
+    return () => {
+      lenis.destroy();
+      ro.disconnect();
+    };
   }, []);
 
   return <>{children}</>;

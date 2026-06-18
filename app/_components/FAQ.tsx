@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     question: "I have more questions!",
-    answer: "Ask us in #pixl on the Hack Club Slack.",
+    answer: "Ask us in #pixl-help on the Hack Club Slack.",
   },
 ];
 
@@ -37,12 +37,15 @@ function FAQItem({
   question,
   answer,
   index,
+  open,
+  onToggle,
 }: {
   question: string;
   answer: string;
   index: number;
+  open: boolean;
+  onToggle: () => void;
 }) {
-  const [open, setOpen] = useState(false);
 
   return (
     <motion.div
@@ -62,7 +65,7 @@ function FAQItem({
           boxShadow: open ? "6px 6px 0px #ff8c37" : "6px 6px 0px #000",
         }}
         transition={{ duration: 0.2 }}
-        onClick={() => setOpen(!open)}
+        onClick={onToggle}
         whileHover={{ x: -2, y: -2, boxShadow: "8px 8px 0px #ec3750" }}
         whileTap={{ x: 0, y: 0, boxShadow: "2px 2px 0px #000" }}
       >
@@ -100,6 +103,7 @@ function FAQItem({
 }
 
 export function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   return (
     <section
       className="my-10 md:my-30 px-4 md:px-20 text-center flex flex-col items-center w-full"
@@ -131,6 +135,8 @@ export function FAQ() {
             index={i}
             question={faq.question}
             answer={faq.answer}
+            open={openIndex === i}
+            onToggle={() => setOpenIndex(openIndex === i ? null : i)}
           />
         ))}
       </div>
