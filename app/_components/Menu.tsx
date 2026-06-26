@@ -9,7 +9,7 @@ export function Menu() {
         href="https://play.pixl.rsvp"
       >
         <span className="block group-hover:hidden">Test the game!</span>
-        <span className="hidden group-hover:block">old version btw</span>
+        <span className="hidden group-hover:block">still in dev!</span>
       </a>
     </div>
   );

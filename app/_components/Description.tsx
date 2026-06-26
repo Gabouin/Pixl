@@ -24,14 +24,14 @@ const steps = [
   },
   {
     step: 4,
-    title: "Sell your Projects",
-    description: "Submit your creations to merchants in your village and earn pixels, the in-game currency",
+    title: "Get Rewarded",
+    description: "NPCs reward you for your work with real prizes and pixels, the in-game currency you can spend in shops",
     video: "/step-4.mp4",
   },
   {
     step: 5,
-    title: "Unlock Funding",
-    description: "Convert pixels into real-world rewards & funding",
+    title: "Spend your Pixels",
+    description: "Take your pixels to merchants and spend them on items, upgrades and real-world rewards",
     video: "/step-5.mp4",
   },
 ];

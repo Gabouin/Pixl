@@ -7,7 +7,7 @@ const levels = [
   {
     level: "Beginner",
     color: "#4ade80",
-    hours: "~8h of work",
+    hours: "~6h of work",
     quest: {
       title: "Build a merchant's storefront",
       description:
@@ -23,7 +23,7 @@ const levels = [
   {
     level: "Intermediate",
     color: "#ff8c37",
-    hours: "~25h of work",
+    hours: "~20h of work",
     quest: {
       title: "Ship a mobile app for the Traveler",
       description:
@@ -39,7 +39,7 @@ const levels = [
   {
     level: "Expert",
     color: "#ec3750",
-    hours: "~45h of work",
+    hours: "~35h of work",
     quest: {
       title: "Secure the Cyberpunk City network",
       description:
@@ -53,9 +53,25 @@ const levels = [
     },
   },
   {
+    level: "Beginner",
+    color: "#4ade80",
+    hours: "~5h of work",
+    quest: {
+      title: "Make me a Roblox game!!",
+      description:
+        "Tim, a 9-year-old NPC from the village, really wants a Roblox game where you collect coins. Build it in Roblox Studio and publish it so he can play with his friends.",
+      tags: ["Roblox", "Lua", "Game Dev"],
+    },
+    prize: {
+      title: "2000 Robux",
+      description:
+        "A grant of 2000 Robux to spend on the Roblox platform, items, avatar upgrades or whatever you want.",
+    },
+  },
+  {
     level: "Intermediate",
     color: "#ff8c37",
-    hours: "~20h of work",
+    hours: "~15h of work",
     quest: {
       title: "Design your own region",
       description:
@@ -71,7 +87,7 @@ const levels = [
   {
     level: "Beginner",
     color: "#4ade80",
-    hours: "~6h of work",
+    hours: "~5h of work",
     quest: {
       title: "Draw sprites for the Item Shop",
       description:
@@ -87,7 +103,7 @@ const levels = [
   {
     level: "Expert",
     color: "#ec3750",
-    hours: "~80h of work",
+    hours: "~65h of work",
     quest: {
       title: "Build a robot arm for the Factory",
       description:
@@ -102,19 +118,6 @@ const levels = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 32 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  },
-};
 
 function SidequestCard({ l }: { l: (typeof levels)[number] }) {
   const [open, setOpen] = useState(false);
@@ -194,7 +197,7 @@ function Marquee({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function Sidequests() {
+export function Sidequests({ onRevealShop }: { onRevealShop?: () => void }) {
   return (
     <section className="my-10 md:my-20 px-4 md:px-8 flex flex-col items-center gap-16" id="sidequests">
       <div className="text-center">
@@ -223,9 +226,7 @@ export function Sidequests() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          NPCs give you projects matched to your level.
-          <br></br>
-          The following sidequests are only given as example and{"\u00A0"}might{"\u00A0"}change{"\u00A0"}over the weeks.
+          These are only examples and might change over the weeks.
         </motion.p>
       </div>
 
@@ -236,16 +237,18 @@ export function Sidequests() {
       </Marquee>
 
       <motion.div
-        className="max-w-2xl w-full border-2 border-black bg-[#fffaf7] px-6 py-5 text-center font-sans"
+        className="max-w-2xl w-full border-2 border-black bg-[#fffaf7] px-6 py-5 text-center font-sans cursor-pointer hover:-translate-y-1 hover:-translate-x-1 transition-all"
         style={{ boxShadow: "4px 4px 0px #000" }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
+        whileHover={{ boxShadow: "8px 8px 0px #000" } as any}
+        onClick={onRevealShop}
       >
-        <p className="font-pixel text-lg mb-2">Prizes are flexible</p>
+        <p className="font-pixel text-lg mb-2">How rewards work</p>
         <p className="text-black/60 text-sm leading-relaxed">
-          Don't want the listed prize or already have it? No problem, swap it for anything of equivalent value. We also have a <span className="text-[#ec3750] font-bold">general shop</span> with hardware grants, API credits, dev tools and more so you can pick what actually matters to you.
+          You get the base prize for each sidequest you complete. The more hours you put in, the more currency you earn to spend in the shop. Don't want the listed prize or already have it? No problem, swap it for anything of equivalent value.
         </p>
       </motion.div>
     </section>
